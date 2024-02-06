@@ -1,0 +1,53 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='tailwind.css') }}">
+    <title>Your Portfolio</title>
+</head>
+<body>
+    <div class="container mx-auto my-10">
+        <h1 class="text-4xl font-bold mb-4">Welcome to My Portfolio</h1>
+        <p class="text-lg">I am showcasing my skills and projects.</p>
+
+        <!-- Tabs -->
+        <div class="flex space-x-4 mt-6">
+            {% for tab in tabs %}
+                <button class="tab-btn{{ ' active' if tab.active }}" onclick="openTab('{{ tab.id }}')">{{ tab.label }}</button>
+            {% endfor %}
+        </div>
+
+        <!-- Tab Content -->
+        {% for tab in tabs %}
+            <div id="{{ tab.id }}" class="tab-content{{ '' if tab.active else ' hidden' }}">
+                <h2 class="text-2xl font-bold mb-2">{{ tab.label }}</h2>
+                <p class="text-lg">{{ tab.content }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function openTab(tabName) {
+            // Hide all tab contents
+            var tabs = document.getElementsByClassName('tab-content');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].style.display = 'none';
+            }
+
+            // Deactivate all buttons
+            var buttons = document.getElementsByClassName('tab-btn');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('active');
+            }
+
+            // Show the selected tab content
+            document.getElementById(tabName).style.display = 'block';
+
+            // Activate the clicked button
+            document.querySelector(`button[data-tab="${tabName}"]`).classList.add('active');
+        }
+    </script>
+</body>
+</html>

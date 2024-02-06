@@ -1,0 +1,31 @@
+/* styles.css */
+/* ... (previous styles) */
+
+/* Custom styles for tabs */
+.tab-btn {
+    background-color: #f3f4f6; /* Background color for inactive tabs */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.tab-btn:hover {
+    background-color: #e5e7eb; /* Hover color for inactive tabs */
+}
+
+.tab-btn.active {
+    background-color: #60a5fa; /* Background color for active tab */
+    color: #ffffff; /* Text color for active tab */
+}
+
+.tab-content {
+    display: none;
+}
+
+/* Show the first tab by default */
+#about {
+    display: block;
+}
